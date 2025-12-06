@@ -5,6 +5,9 @@
  * Gestiona el enrutamiento de URLs hacia los controladores
  */
 
+// Establecer charset a UTF-8 antes de enviar cualquier contenido
+header('Content-Type: text/html; charset=utf-8');
+
 // Iniciar sesión
 session_start();
 
@@ -47,9 +50,7 @@ try {
         } else {
             // Ruta no encontrada
             http_response_code(404);
-            $view = new PostController();
-            $reflection = new ReflectionMethod($view, 'index');
-            $params = $reflection->getParameters();
+            $message = 'La ruta solicitada no existe';
             include __DIR__ . '/../app/Views/404.php';
         }
     } else {
@@ -61,8 +62,8 @@ try {
 } catch (Exception $e) {
     http_response_code(500);
     echo '<h1>Error interno del servidor</h1>';
-    echo '<p>' . htmlspecialchars($e->getMessage()) . '</p>';
+    echo '<p>' . htmlentities($e->getMessage(), ENT_QUOTES, 'UTF-8') . '</p>';
     if (ini_get('display_errors')) {
-        echo '<pre>' . htmlspecialchars($e->getTraceAsString()) . '</pre>';
+        echo '<pre>' . htmlentities($e->getTraceAsString(), ENT_QUOTES, 'UTF-8') . '</pre>';
     }
 }

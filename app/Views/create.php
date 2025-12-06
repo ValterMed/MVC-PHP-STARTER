@@ -26,7 +26,7 @@
 
         <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-error">
-                <?php echo htmlspecialchars($_SESSION['error']); ?>
+                <?php echo htmlentities($_SESSION['error'], ENT_QUOTES, 'UTF-8'); ?>
                 <?php unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>

@@ -6,6 +6,22 @@
  * Variables disponibles:
  * @var array $posts Lista de posts
  */
+
+// Función para formatear la fecha en español (sin intl)
+function formatearFechaEspanol($fecha) {
+    $meses = [
+        1 => 'Enero', 2 => 'Febrero', 3 => 'Marzo', 4 => 'Abril',
+        5 => 'Mayo', 6 => 'Junio', 7 => 'Julio', 8 => 'Agosto',
+        9 => 'Septiembre', 10 => 'Octubre', 11 => 'Noviembre', 12 => 'Diciembre'
+    ];
+    
+    $timestamp = strtotime($fecha);
+    $dia = (int) date('d', $timestamp);
+    $mes = (int) date('m', $timestamp);
+    $año = date('Y', $timestamp);
+    
+    return "$dia / " . $meses[$mes] . " / $año";
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,14 +45,14 @@
 
         <?php if (isset($_SESSION['success'])): ?>
             <div class="alert alert-success">
-                <?php echo htmlspecialchars($_SESSION['success']); ?>
+                <?php echo htmlentities($_SESSION['success'], ENT_QUOTES, 'UTF-8'); ?>
                 <?php unset($_SESSION['success']); ?>
             </div>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['error'])): ?>
             <div class="alert alert-error">
-                <?php echo htmlspecialchars($_SESSION['error']); ?>
+                <?php echo htmlentities($_SESSION['error'], ENT_QUOTES, 'UTF-8'); ?>
                 <?php unset($_SESSION['error']); ?>
             </div>
         <?php endif; ?>
@@ -53,16 +69,16 @@
                         <article class="post-card">
                             <div class="post-header">
                                 <h2 class="post-title">
-                                    <?php echo htmlspecialchars($post['title']); ?>
+                                    <?php echo htmlentities($post['title'], ENT_QUOTES, 'UTF-8'); ?>
                                 </h2>
                                 <small class="post-date">
-                                    <?php echo date('d/m/Y H:i', strtotime($post['created_at'])); ?>
+                                    <?php echo formatearFechaEspanol($post['created_at']); ?>
                                 </small>
                             </div>
                             <p class="post-excerpt">
-                                <?php 
+                                <?php
                                 $excerpt = substr($post['body'], 0, 150);
-                                echo htmlspecialchars($excerpt);
+                                echo htmlentities($excerpt, ENT_QUOTES, 'UTF-8');
                                 if (strlen($post['body']) > 150) {
                                     echo '...';
                                 }

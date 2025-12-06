@@ -10,15 +10,20 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apk add --no-cache \
     git \
     curl \
-    vim
+    vim \
+    netcat-openbsd
 
 WORKDIR /app
 
-# Copiar composer.json si existe
-COPY composer.json* ./
+# Copiar composer.json y composer.lock si existen
+COPY composer.* ./
 
-# Instalar dependencias
-RUN composer install --no-scripts --no-autoloader 2>/dev/null || true
+# Instalar dependencias CON autoloader
+RUN if [ -f composer.json ]; then \
+    composer install --no-interaction --no-progress; \
+else \
+    composer init --no-interaction --name=mvc-php-starter/app; \
+fi
 
 EXPOSE 9000
 

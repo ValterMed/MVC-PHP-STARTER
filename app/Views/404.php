@@ -32,7 +32,7 @@
                 <h1 class="error-code">404</h1>
                 <h2 class="error-title">Página no encontrada</h2>
                 <p class="error-message">
-                    <?php echo htmlspecialchars($message ?? 'La página que buscas no existe o fue movida'); ?>
+                    <?php echo htmlentities($message ?? 'La página que buscas no existe o fue movida', ENT_QUOTES, 'UTF-8'); ?>
                 </p>
                 <a href="/" class="btn btn-primary">Volver al inicio</a>
             </div>

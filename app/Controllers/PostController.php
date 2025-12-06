@@ -82,9 +82,9 @@ class PostController
             return;
         }
 
-        // Sanitización básica
-        $title = htmlspecialchars(trim($title));
-        $body = htmlspecialchars(trim($body));
+        // Sanitización básica (trim solamente, el escape se hace en la vista)
+        $title = trim($title);
+        $body = trim($body);
 
         if ($this->post->create($title, $body)) {
             $_SESSION['success'] = 'Post creado exitosamente';
