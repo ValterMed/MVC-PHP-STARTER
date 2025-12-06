@@ -30,7 +30,17 @@ git clone <url-del-repositorio>
 cd MVC-PHP-STARTER
 ```
 
-2. **Iniciar los contenedores**
+2. **Configurar variables de entorno**
+
+Copia el archivo de ejemplo y configura los valores deseados:
+
+```bash
+cp .env.example .env
+```
+
+Edita el archivo `.env` con tus valores específicos (base de datos, puerto, etc.)
+
+3. **Iniciar los contenedores**
 
 ```bash
 docker-compose up -d
@@ -41,13 +51,15 @@ Esto iniciará 3 contenedores:
 - **Nginx**: Servidor web
 - **MySQL**: Base de datos
 
-3. **Instalar dependencias de Composer**
+4. **Instalar dependencias de Composer**
+
+Una vez que los contenedores estén en ejecución, instala las dependencias:
 
 ```bash
 docker-compose exec php composer install
 ```
 
-4. **Acceder a la aplicación**
+5. **Acceder a la aplicación**
 
 Abre tu navegador en: http://localhost:8080
 
@@ -79,6 +91,8 @@ MVC-PHP-STARTER/
 ├── php.ini                         # Configuración PHP (charset UTF-8)
 ├── mysql-custom.cnf                # Configuración MySQL (UTF-8)
 ├── init.sql                        # Script de inicialización BD
+├── .env.example                    # Archivo de ejemplo de variables de entorno
+├── .env                            # Variables de entorno (no commitear)
 └── README.md                       # Este archivo
 ```
 
