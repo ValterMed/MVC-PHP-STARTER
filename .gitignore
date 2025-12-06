@@ -1,0 +1,16 @@
+vendor/
+composer.lock
+.DS_Store
+.env
+.env.local
+node_modules/
+*.log
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+*.sublime-workspace
+*.sublime-project
