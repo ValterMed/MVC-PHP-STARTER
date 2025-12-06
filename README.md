@@ -43,7 +43,7 @@ Edita el archivo `.env` con tus valores específicos (base de datos, puerto, etc
 3. **Iniciar los contenedores**
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Esto iniciará 3 contenedores:
@@ -56,7 +56,7 @@ Esto iniciará 3 contenedores:
 Una vez que los contenedores estén en ejecución, instala las dependencias:
 
 ```bash
-docker-compose exec php composer install
+docker compose exec php composer install
 ```
 
 5. **Acceder a la aplicación**
@@ -162,25 +162,25 @@ CREATE TABLE posts (
 
 ```bash
 # Ver logs
-docker-compose logs -f php
-docker-compose logs -f nginx
-docker-compose logs -f mysql
+docker compose logs -f php
+docker compose logs -f nginx
+docker compose logs -f mysql
 
 # Acceder a PHP CLI
-docker-compose exec php bash
+docker compose exec php bash
 
 # Acceder a MySQL CLI
-docker-compose exec mysql mysql -u mvc_user -pmvc_password -D ejemplo-mvc-php
+docker compose exec mysql mysql -u mvc_user -pmvc_password -D ejemplo-mvc-php
 
 # Detener contenedores
-docker-compose down
+docker compose down
 
 # Eliminar todo (incluyendo BD)
-docker-compose down -v
+docker compose down -v
 
 # Reconstruir contenedores
-docker-compose build --no-cache
-docker-compose up -d
+docker compose build --no-cache
+docker compose up -d
 ```
 
 ## 📚 Conceptos MVC Aplicados
